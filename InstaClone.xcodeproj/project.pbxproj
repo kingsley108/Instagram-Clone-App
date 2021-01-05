@@ -15,6 +15,7 @@
 		1F200C0A25A458B000BC315E /* InstaCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F200C0925A458B000BC315E /* InstaCloneTests.swift */; };
 		1F200C1525A458B000BC315E /* InstaCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F200C1425A458B000BC315E /* InstaCloneUITests.swift */; };
 		1F200C2925A45A4D00BC315E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F200C2825A45A4C00BC315E /* Assets.xcassets */; };
+		1F200C2F25A4687F00BC315E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F200C2E25A4687F00BC315E /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		1F200C1425A458B000BC315E /* InstaCloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaCloneUITests.swift; sourceTree = "<group>"; };
 		1F200C1625A458B000BC315E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F200C2825A45A4C00BC315E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1F200C2E25A4687F00BC315E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		1F200BF125A458A900BC315E /* InstaClone */ = {
 			isa = PBXGroup;
 			children = (
+				1F200C2D25A4686200BC315E /* Helper */,
 				1F200BF225A458A900BC315E /* AppDelegate.swift */,
 				1F200BF425A458A900BC315E /* SceneDelegate.swift */,
 				1F200BF625A458A900BC315E /* ViewController.swift */,
@@ -126,6 +129,14 @@
 				1F200C1625A458B000BC315E /* Info.plist */,
 			);
 			path = InstaCloneUITests;
+			sourceTree = "<group>";
+		};
+		1F200C2D25A4686200BC315E /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				1F200C2E25A4687F00BC315E /* Extensions.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +272,7 @@
 				1F200BF725A458A900BC315E /* ViewController.swift in Sources */,
 				1F200BF325A458A900BC315E /* AppDelegate.swift in Sources */,
 				1F200BF525A458A900BC315E /* SceneDelegate.swift in Sources */,
+				1F200C2F25A4687F00BC315E /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

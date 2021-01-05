@@ -12,7 +12,6 @@ class ViewController: UIViewController
     let plusButton : UIButton =
     {
         var btn = UIButton()
-        btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
         return btn
 
@@ -22,7 +21,6 @@ class ViewController: UIViewController
     {
         var txt = UITextField()
         txt.placeholder = "Email"
-        txt.translatesAutoresizingMaskIntoConstraints = false
         txt.borderStyle = .roundedRect
         txt.backgroundColor = UIColor(white: 0, alpha: 0.03)
         txt.font = UIFont.systemFont(ofSize: 14)
@@ -35,7 +33,6 @@ class ViewController: UIViewController
     {
         var txt = UITextField()
         txt.placeholder = "Username"
-        txt.translatesAutoresizingMaskIntoConstraints = false
         txt.borderStyle = .roundedRect
         txt.backgroundColor = UIColor(white: 0, alpha: 0.03)
         txt.font = UIFont.systemFont(ofSize: 14)
@@ -46,7 +43,6 @@ class ViewController: UIViewController
     {
         var txt = UITextField()
         txt.placeholder = "Password"
-        txt.translatesAutoresizingMaskIntoConstraints = false
         txt.borderStyle = .roundedRect
         txt.backgroundColor = UIColor(white: 0, alpha: 0.03)
         txt.font = UIFont.systemFont(ofSize: 14)
@@ -58,12 +54,10 @@ class ViewController: UIViewController
     {
         let btn = UIButton()
         btn.setTitle("Sign up", for: .normal)
-        btn.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
-        print("Button done")
+        btn.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
         btn.titleLabel?.textColor = .white
         btn.layer.cornerRadius = 5
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
         
         
@@ -81,16 +75,10 @@ class ViewController: UIViewController
         view.addSubview(signupButton)
         
         //Constraints of Button
-        plusButton.heightAnchor.constraint(equalToConstant: 140).isActive = true
-        plusButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
+        plusButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, padTop: 60, padLeft: 0, padBottom: 0, padRight: 0, width: 140, height: 140)
         plusButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        plusButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         
-        //Constraints of textfield
-        
-       
-        
-        
+        //set up position of textfield
         setUpStackview()
         
         
@@ -101,20 +89,13 @@ class ViewController: UIViewController
     {
         let layoutStack = UIStackView(arrangedSubviews: [emailTextfield,usernameTextfield,passwordTextfield,signupButton])
         
-        layoutStack.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(layoutStack)
         layoutStack.distribution = .fillEqually
         layoutStack.spacing = 15
         layoutStack.axis = .vertical
         
         //Setting up positioning
-        NSLayoutConstraint.activate([
-            layoutStack.topAnchor.constraint(equalTo: plusButton.bottomAnchor, constant: 30) ,
-            layoutStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40),
-            layoutStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -40),
-            layoutStack.heightAnchor.constraint(equalToConstant: 200)
-        ])
-        
+        layoutStack.anchor(top: plusButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padTop: 30, padLeft: 40, padBottom: 0, padRight: -40 , width: 0, height: 0)
         
         
     }
