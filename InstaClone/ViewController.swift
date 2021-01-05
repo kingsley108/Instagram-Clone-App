@@ -6,7 +6,9 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
 class ViewController: UIViewController
 {
@@ -110,6 +112,9 @@ class ViewController: UIViewController
         
     }
     
+    
+    //MARK: Registering Users
+    
     @objc func signUpPressed ()
     {
         //Check property isnt empty
@@ -132,17 +137,32 @@ class ViewController: UIViewController
         }
         
         
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+        
+        Auth.auth().createUser(withEmail: email, password: password)
+        { authResult, error in
             
             if let error = error
             {
                 print(error)
+                return
                 
             }
+            guard let uid = Auth.auth().currentUser?.uid else {return}
             
-            print("User creation sucessful" )
+            let usernameVal = ["username" : username]
+            let userDict = [ uid: usernameVal]
             
-            
+            Database.database().reference().child("users").updateChildValues(userDict, withCompletionBlock: { (err, ref) in
+                
+                if let err = err {
+                    print("Failed to save user info into db:", err)
+                    return
+                }
+                
+                print("Successfully saved user info to db")
+                
+            })
+   
             
         }
         
