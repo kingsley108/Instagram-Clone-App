@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ViewController: UIViewController
 {
+    public var isFilledCorrect : Bool = false
+    
     let plusButton : UIButton =
     {
         var btn = UIButton()
@@ -24,6 +27,7 @@ class ViewController: UIViewController
         txt.borderStyle = .roundedRect
         txt.backgroundColor = UIColor(white: 0, alpha: 0.03)
         txt.font = UIFont.systemFont(ofSize: 14)
+        txt.addTarget(self, action: #selector(isTextFull), for: .editingChanged)
         return txt
         
         
@@ -36,6 +40,7 @@ class ViewController: UIViewController
         txt.borderStyle = .roundedRect
         txt.backgroundColor = UIColor(white: 0, alpha: 0.03)
         txt.font = UIFont.systemFont(ofSize: 14)
+        txt.addTarget(self, action: #selector(isTextFull), for: .editingChanged)
         return txt
     }()
     
@@ -47,6 +52,7 @@ class ViewController: UIViewController
         txt.backgroundColor = UIColor(white: 0, alpha: 0.03)
         txt.font = UIFont.systemFont(ofSize: 14)
         txt.isSecureTextEntry = true
+        txt.addTarget(self, action: #selector(isTextFull), for: .editingChanged)
         return txt
     }()
     
@@ -58,6 +64,9 @@ class ViewController: UIViewController
         btn.titleLabel?.textColor = .white
         btn.layer.cornerRadius = 5
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        btn.isEnabled = false
+        btn.addTarget(self, action: #selector(signUpPressed), for: .touchUpInside)
+        
         return btn
         
         
@@ -82,6 +91,7 @@ class ViewController: UIViewController
         setUpStackview()
         
         
+        
     }
     
     
@@ -99,7 +109,65 @@ class ViewController: UIViewController
         
         
     }
-
+    
+    @objc func signUpPressed ()
+    {
+        //Check property isnt empty
+        guard let email = emailTextfield.text, email.count > 0 else
+        {
+            print("error with email text")
+            return
+        }
+        
+        guard let password = passwordTextfield.text, password.count > 0 else
+        {
+            print("error with password textfield")
+            return
+        }
+        
+        guard let username = usernameTextfield.text, username.count > 0 else
+        {
+            print("error with username textfield")
+            return
+        }
+        
+        
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            
+            if let error = error
+            {
+                print(error)
+                
+            }
+            
+            print("User creation sucessful" )
+            
+            
+            
+        }
+        
+        
+    }
+    
+    @objc func isTextFull()
+    {
+        isFilledCorrect = emailTextfield.text!.count > 0 && passwordTextfield.text!.count > 0 && passwordTextfield.text!.count > 0
+        
+        if isFilledCorrect
+        {
+            signupButton.isEnabled = true
+            signupButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+            
+        }
+        else
+        {
+            signupButton.isEnabled = false
+            signupButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
+            
+        }
+             
+        
+    }
 
 }
 
