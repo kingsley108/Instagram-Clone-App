@@ -6,53 +6,118 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import Firebase
 
-private let reuseIdentifier = "Cell"
 
-class UserProfileController: UICollectionViewController {
 
+class UserProfileController: UICollectionViewController , UICollectionViewDelegateFlowLayout
+{
+    let reuseIdentifier = "Cell"
+    let headerIdentifier = "headerId"
+    var user : User?
+    
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        self.collectionView.register(UserProfileHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+        
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.backgroundColor = .white
+        view.addSubview(collectionView)
+        fetchUsers()
+        
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    //MARK: Function to fetch the username
+    
+    func fetchUsers()
+    {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        let ref = Database.database().reference().child("users").child(uid)
+        ref.observeSingleEvent(of: .value) { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String:Any]
+            {
+                let user = User(dictionary: dictionary)
+                self.user = user
+                DispatchQueue.main.async
+                {
+                    self.navigationItem.title = user.username
+                    let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+                    self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+                }
+                
+                self.collectionView.reloadData()
+            }
+        } withCancel: { (err) in
+            print("There is an error fetchng user",err)
+            
+        }
     }
-    */
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
+    {
+        let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as? UserProfileHeaderCell
+        headerCell?.backgroundColor = .white
+        
+        headerCell?.user = self.user
+        
+        return headerCell!
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize
+    {
+        return CGSize(width:(view.window?.frame.width)!, height: 200)
+        
+    }
+    
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
+//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
+//
+//
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return 7
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        cell.backgroundColor = .purple
+
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let size = (view.frame.width - 2)/3
+        return CGSize(width: size, height: size)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat
+    {
+        return 1
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
+    {
+        return 1
+    }
+
+    
 
     // MARK: UICollectionViewDelegate
 

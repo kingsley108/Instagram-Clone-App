@@ -14,12 +14,16 @@
 		1F200BFF25A458B000BC315E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F200BFD25A458B000BC315E /* LaunchScreen.storyboard */; };
 		1F200C0A25A458B000BC315E /* InstaCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F200C0925A458B000BC315E /* InstaCloneTests.swift */; };
 		1F200C1525A458B000BC315E /* InstaCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F200C1425A458B000BC315E /* InstaCloneUITests.swift */; };
-		1F200C2925A45A4D00BC315E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F200C2825A45A4C00BC315E /* Assets.xcassets */; };
 		1F200C2F25A4687F00BC315E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F200C2E25A4687F00BC315E /* Extensions.swift */; };
 		1F200C3725A473B400BC315E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F200C3625A473B400BC315E /* GoogleService-Info.plist */; };
 		1F5A2E7E25A49F9500626E05 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F5A2E7D25A49F9500626E05 /* GoogleService-Info.plist */; };
 		1F5A2E7F25A49F9500626E05 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F5A2E7D25A49F9500626E05 /* GoogleService-Info.plist */; };
 		1F5A2E8025A49F9500626E05 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F5A2E7D25A49F9500626E05 /* GoogleService-Info.plist */; };
+		1F6337E525B173F200C49215 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6337E425B173F200C49215 /* MainTabBarController.swift */; };
+		1F6337EB25B1747800C49215 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6337EA25B1747800C49215 /* UserProfileController.swift */; };
+		1F6337FB25B18E2500C49215 /* UserProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6337FA25B18E2400C49215 /* UserProfileHeaderCell.swift */; };
+		1F63380025B1903800C49215 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6337FF25B1903700C49215 /* User.swift */; };
+		1F63381225B2E06900C49215 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F63381125B2E06900C49215 /* Assets.xcassets */; };
 		B1E74AC3567A734F4C958AA2 /* Pods_InstaClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A870BDDF58A2A4E5EA1475 /* Pods_InstaClone.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,10 +59,14 @@
 		1F200C1025A458B000BC315E /* InstaCloneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstaCloneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F200C1425A458B000BC315E /* InstaCloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaCloneUITests.swift; sourceTree = "<group>"; };
 		1F200C1625A458B000BC315E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1F200C2825A45A4C00BC315E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F200C2E25A4687F00BC315E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1F200C3625A473B400BC315E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F5A2E7D25A49F9500626E05 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1F6337E425B173F200C49215 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		1F6337EA25B1747800C49215 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
+		1F6337FA25B18E2400C49215 /* UserProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderCell.swift; sourceTree = "<group>"; };
+		1F6337FF25B1903700C49215 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1F63381125B2E06900C49215 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A26AEDEB78AC2C0FE706030 /* Pods-InstaClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone.debug.xcconfig"; path = "Target Support Files/Pods-InstaClone/Pods-InstaClone.debug.xcconfig"; sourceTree = "<group>"; };
 		93A870BDDF58A2A4E5EA1475 /* Pods_InstaClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -114,6 +122,7 @@
 		1F200BF125A458A900BC315E /* InstaClone */ = {
 			isa = PBXGroup;
 			children = (
+				1F6337E925B1745900C49215 /* UserProfile */,
 				1F200C2D25A4686200BC315E /* Helper */,
 				1F200BF225A458A900BC315E /* AppDelegate.swift */,
 				1F200BF425A458A900BC315E /* SceneDelegate.swift */,
@@ -122,7 +131,8 @@
 				1F200BFD25A458B000BC315E /* LaunchScreen.storyboard */,
 				1F200C0025A458B000BC315E /* Info.plist */,
 				1F5A2E7D25A49F9500626E05 /* GoogleService-Info.plist */,
-				1F200C2825A45A4C00BC315E /* Assets.xcassets */,
+				1F63381125B2E06900C49215 /* Assets.xcassets */,
+				1F6337E425B173F200C49215 /* MainTabBarController.swift */,
 			);
 			path = InstaClone;
 			sourceTree = "<group>";
@@ -152,6 +162,16 @@
 				1F200C2E25A4687F00BC315E /* Extensions.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		1F6337E925B1745900C49215 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				1F6337EA25B1747800C49215 /* UserProfileController.swift */,
+				1F6337FA25B18E2400C49215 /* UserProfileHeaderCell.swift */,
+				1F6337FF25B1903700C49215 /* User.swift */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		AC3D70CFBEDDFA2DCDBE1114 /* Pods */ = {
@@ -278,8 +298,8 @@
 			files = (
 				1F200BFF25A458B000BC315E /* LaunchScreen.storyboard in Resources */,
 				1F5A2E7E25A49F9500626E05 /* GoogleService-Info.plist in Resources */,
-				1F200C2925A45A4D00BC315E /* Assets.xcassets in Resources */,
 				1F200BFA25A458A900BC315E /* Main.storyboard in Resources */,
+				1F63381225B2E06900C49215 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +370,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F200BF725A458A900BC315E /* ViewController.swift in Sources */,
+				1F6337FB25B18E2500C49215 /* UserProfileHeaderCell.swift in Sources */,
 				1F200BF325A458A900BC315E /* AppDelegate.swift in Sources */,
+				1F6337EB25B1747800C49215 /* UserProfileController.swift in Sources */,
+				1F63380025B1903800C49215 /* User.swift in Sources */,
+				1F6337E525B173F200C49215 /* MainTabBarController.swift in Sources */,
 				1F200BF525A458A900BC315E /* SceneDelegate.swift in Sources */,
 				1F200C2F25A4687F00BC315E /* Extensions.swift in Sources */,
 			);
@@ -529,6 +553,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 989D68794S;
 				INFOPLIST_FILE = InstaClone/Info.plist;
@@ -538,6 +563,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Kingsley-Charles.InstaClone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -549,6 +575,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 989D68794S;
 				INFOPLIST_FILE = InstaClone/Info.plist;
@@ -558,6 +585,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Kingsley-Charles.InstaClone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

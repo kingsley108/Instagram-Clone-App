@@ -18,6 +18,9 @@ class ViewController: UIViewController
     let plusButton : UIButton =
         {
             var btn = UIButton()
+            btn.contentHorizontalAlignment = .fill
+            btn.contentVerticalAlignment = .fill
+            btn.imageView?.contentMode = .scaleAspectFill
             btn.setImage(#imageLiteral(resourceName: "plus_photo"), for: .normal)
             btn.addTarget(self, action: #selector(addProfilePic), for: .touchUpInside)
             return btn

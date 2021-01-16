@@ -24,9 +24,9 @@ extension UIView
         
         if let topC = top {self.topAnchor.constraint(equalTo: topC, constant: padTop).isActive = true}
         
-        if let bottomC = bottom{self.bottomAnchor.constraint(equalTo: bottomC, constant: padBottom).isActive = true}
+        if let bottomC = bottom{self.bottomAnchor.constraint(equalTo: bottomC, constant: -padBottom).isActive = true}
         
-        if let rightC = right{self.rightAnchor.constraint(equalTo: rightC, constant: padRight).isActive = true}
+        if let rightC = right{self.rightAnchor.constraint(equalTo: rightC, constant: -padRight).isActive = true}
         
         if let leftC = left {self.leftAnchor.constraint(equalTo: leftC, constant: padLeft).isActive = true}
         
