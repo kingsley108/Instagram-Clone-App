@@ -16,6 +16,8 @@ extension UIColor
     }
 }
 
+//MARK: TextfieldDelegate Methods
+
 extension UIView
 {
     func anchor(top : NSLayoutYAxisAnchor? , left :NSLayoutXAxisAnchor? ,bottom:NSLayoutYAxisAnchor?,right:NSLayoutXAxisAnchor?, padTop : CGFloat , padLeft :CGFloat , padBottom : CGFloat,padRight : CGFloat , width :CGFloat , height : CGFloat)

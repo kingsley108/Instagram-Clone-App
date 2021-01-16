@@ -34,7 +34,7 @@ class RegisterViewController: UIViewController
             txt.borderStyle = .roundedRect
             txt.backgroundColor = UIColor(white: 0, alpha: 0.03)
             txt.font = UIFont.systemFont(ofSize: 14)
-            txt.text = "Kingsley108@yahoo.com"
+            //txt.text = "Kingsley108@yahoo.com"
             txt.addTarget(self, action: #selector(isTextFull), for: .editingChanged)
             return txt
             
@@ -117,6 +117,12 @@ class RegisterViewController: UIViewController
         
         view.addSubview(promptSignIn)
         promptSignIn.anchor(top:nil, left:view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, padTop: 0, padLeft: 0, padBottom: 25, padRight: 0, width: 0, height: 50)
+        
+        //Set keyboard delegate methods
+        emailTextfield.delegate = self
+        passwordTextfield.delegate = self
+        usernameTextfield.delegate = self
+        
     }
     
     
@@ -211,18 +217,26 @@ class RegisterViewController: UIViewController
                             return
                         }
                         print("Successfully saved user info to db")
+                        guard let rootVc = UIApplication.shared.windows.first!.rootViewController as? MainTabBarController else {return}
+                        rootVc.setUpVc()
+                        self.dismiss(animated: true, completion: nil)
                     })
                     
                 } //Download image URL
                 
             }
             
+           
+            
+            
         }
     }
     
     @objc func isTextFull()
     {
-        isFilledCorrect = emailTextfield.text!.count > 0 && passwordTextfield.text!.count > 0 && passwordTextfield.text!.count > 0
+        let buttonImage = plusButton.image(for: .normal)
+        let defaultimage = #imageLiteral(resourceName: "plus_photo")
+        isFilledCorrect = emailTextfield.text!.count > 0 && passwordTextfield.text!.count > 0 && usernameTextfield.text!.count > 0 && buttonImage != defaultimage
         
         if isFilledCorrect
         {
@@ -259,13 +273,13 @@ extension RegisterViewController : UIImagePickerControllerDelegate & UINavigatio
 {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
     {
-        if let tempImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        if let tempImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         {
             plusButton.setImage(tempImage, for: .normal)
             dismiss(animated: true, completion: nil)
             
         }
-        else if let tempImage = info[.editedImage] as? UIImage
+        else if let tempImage = info[.originalImage] as? UIImage
         {
             plusButton.setImage(tempImage, for: .normal)
             dismiss(animated: true, completion: nil)
@@ -288,4 +302,6 @@ extension RegisterViewController : UIImagePickerControllerDelegate & UINavigatio
     }
     
 }
+
+
 

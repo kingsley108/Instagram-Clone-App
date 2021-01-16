@@ -12,6 +12,12 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpVc()
+      
+
+    }
+    func setUpVc ()
+    {
         let layout = UICollectionViewFlowLayout()
         let userProfile = UserProfileController(collectionViewLayout: layout)
         
@@ -23,7 +29,7 @@ class MainTabBarController: UITabBarController {
         tabBar.barTintColor = .lightGray
         viewControllers = [userNav]
         userNav.navigationBar.barTintColor = UIColor.lightGray
-
+        
     }
     
 

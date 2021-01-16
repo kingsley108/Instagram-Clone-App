@@ -25,6 +25,7 @@
 		1F63380025B1903800C49215 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6337FF25B1903700C49215 /* User.swift */; };
 		1F63382325B2FD7B00C49215 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63382225B2FD7B00C49215 /* LoginViewController.swift */; };
 		1FC962B925B31733000ACF6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FC962B825B31733000ACF6E /* Assets.xcassets */; };
+		1FC962C425B33511000ACF6E /* KeyBoard Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC962C325B33511000ACF6E /* KeyBoard Extension.swift */; };
 		B1E74AC3567A734F4C958AA2 /* Pods_InstaClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A870BDDF58A2A4E5EA1475 /* Pods_InstaClone.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		1F6337FF25B1903700C49215 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1F63382225B2FD7B00C49215 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1FC962B825B31733000ACF6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1FC962C325B33511000ACF6E /* KeyBoard Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyBoard Extension.swift"; sourceTree = "<group>"; };
 		2A26AEDEB78AC2C0FE706030 /* Pods-InstaClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone.debug.xcconfig"; path = "Target Support Files/Pods-InstaClone/Pods-InstaClone.debug.xcconfig"; sourceTree = "<group>"; };
 		93A870BDDF58A2A4E5EA1475 /* Pods_InstaClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -124,7 +126,7 @@
 		1F200BF125A458A900BC315E /* InstaClone */ = {
 			isa = PBXGroup;
 			children = (
-				1F63382A25B2FE5700C49215 /* SignUp */,
+				1F63382A25B2FE5700C49215 /* Register */,
 				1F63382125B2FD2300C49215 /* Login */,
 				1F6337E925B1745900C49215 /* UserProfile */,
 				1F200C2D25A4686200BC315E /* Helper */,
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				1F200C2E25A4687F00BC315E /* Extensions.swift */,
+				1FC962C325B33511000ACF6E /* KeyBoard Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -185,12 +188,12 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		1F63382A25B2FE5700C49215 /* SignUp */ = {
+		1F63382A25B2FE5700C49215 /* Register */ = {
 			isa = PBXGroup;
 			children = (
 				1F200BF625A458A900BC315E /* RegisterViewController.swift */,
 			);
-			path = SignUp;
+			path = Register;
 			sourceTree = "<group>";
 		};
 		AC3D70CFBEDDFA2DCDBE1114 /* Pods */ = {
@@ -393,6 +396,7 @@
 				1F6337FB25B18E2500C49215 /* UserProfileHeaderCell.swift in Sources */,
 				1F200BF325A458A900BC315E /* AppDelegate.swift in Sources */,
 				1F6337EB25B1747800C49215 /* UserProfileController.swift in Sources */,
+				1FC962C425B33511000ACF6E /* KeyBoard Extension.swift in Sources */,
 				1F63380025B1903800C49215 /* User.swift in Sources */,
 				1F6337E525B173F200C49215 /* MainTabBarController.swift in Sources */,
 				1F200BF525A458A900BC315E /* SceneDelegate.swift in Sources */,

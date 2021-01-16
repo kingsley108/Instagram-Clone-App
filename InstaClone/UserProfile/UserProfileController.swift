@@ -53,7 +53,6 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
     func fetchUsers()
     {
         guard let uid = Auth.auth().currentUser?.uid else {return}
-        
         let ref = Database.database().reference().child("users").child(uid)
         ref.observeSingleEvent(of: .value) { (snapshot) in
             
@@ -61,9 +60,10 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
             {
                 let user = User(dictionary: dictionary)
                 self.user = user
+                guard let username = self.user?.username else {return}
                 DispatchQueue.main.async
                 {
-                    self.navigationItem.title = user.username
+                    self.navigationItem.title = username
                     let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
                     self.navigationController?.navigationBar.titleTextAttributes = textAttributes
                 }
@@ -96,6 +96,11 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
           } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
           }
+            
+            let loginVc = LoginViewController()
+            let navController = UINavigationController(rootViewController: loginVc)
+            navController.modalPresentationStyle = .fullScreen
+            self.present(navController, animated: true, completion: nil)
             
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)

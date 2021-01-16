@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
-    
+    var isFilledCorrect = false
     let headerView: UIView =
     {
         let vw = UIView()
@@ -46,7 +48,7 @@ class LoginViewController: UIViewController {
             txt.backgroundColor = UIColor(white: 0, alpha: 0.03)
             txt.font = UIFont.systemFont(ofSize: 14)
             txt.text = "Kingsley108@yahoo.com"
-            //txt.addTarget(self, action: #selector(isTextFull), for: .editingChanged)
+            txt.addTarget(self, action: #selector(isTextFull), for: .editingChanged)
             return txt
             
             
@@ -59,7 +61,7 @@ class LoginViewController: UIViewController {
             txt.borderStyle = .roundedRect
             txt.backgroundColor = UIColor(white: 0, alpha: 0.03)
             txt.font = UIFont.systemFont(ofSize: 14)
-            //txt.addTarget(self, action: #selector(isTextFull), for: .editingChanged)
+            txt.addTarget(self, action: #selector(isTextFull), for: .editingChanged)
             txt.text = "Kingsley"
             return txt
         }()
@@ -72,7 +74,7 @@ class LoginViewController: UIViewController {
             txt.backgroundColor = UIColor(white: 0, alpha: 0.03)
             txt.font = UIFont.systemFont(ofSize: 14)
             txt.isSecureTextEntry = true
-           // txt.addTarget(self, action: #selector(isTextFull), for: .editingChanged)
+           txt.addTarget(self, action: #selector(isTextFull), for: .editingChanged)
             return txt
         }()
     
@@ -85,7 +87,7 @@ class LoginViewController: UIViewController {
             btn.layer.cornerRadius = 5
             btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
             btn.isEnabled = false
-            //btn.addTarget(self, action: #selector(signUpPressed), for: .touchUpInside)
+            btn.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)
             
             return btn
             
@@ -100,8 +102,31 @@ class LoginViewController: UIViewController {
         promptSignUp.anchor(top:nil, left:view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, padTop: 0, padLeft: 0, padBottom: 25, padRight: 0, width: 0, height: 50)
         view.addSubview(headerView)
         headerView.anchor(top:view.topAnchor, left: view.leftAnchor, bottom:nil, right: view.rightAnchor, padTop: 0, padLeft: 0, padBottom: 0, padRight: 0, width: 0, height: 150)
+        
         setUpInputs()
         
+        //Set keyboard delegate methods
+        emailTextfield.delegate = self
+        passwordTextfield.delegate = self
+    }
+    
+    
+    @objc func isTextFull()
+    {
+        isFilledCorrect = emailTextfield.text!.count > 0 && passwordTextfield.text!.count > 0
+        
+        if isFilledCorrect
+        {
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+            
+        }
+        else
+        {
+            loginButton.isEnabled = false
+            loginButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
+            
+        }
     }
     
     fileprivate func setUpInputs()
@@ -125,7 +150,19 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(signUpVc, animated: true)
     }
     
-
-   
-
+    //MARK: Logging in functionality
+    @objc func loginPressed ()
+    {
+       
+        guard let email = emailTextfield.text , let password = passwordTextfield.text else {return}
+        
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            print("Logged in")
+            guard let rootVc = UIApplication.shared.windows.first!.rootViewController as? MainTabBarController else {return}
+            rootVc.setUpVc()
+            self.dismiss(animated: true, completion: nil)
+            
+        } //Signing in function from firebase
+        
+    }
 }
