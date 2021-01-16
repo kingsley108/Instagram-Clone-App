@@ -22,6 +22,17 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if Auth.auth().currentUser == nil
+        {
+            DispatchQueue.main.async {
+                let loginVc = LoginViewController()
+                let nav = UINavigationController(rootViewController: loginVc)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+
+            }
+        }
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -31,6 +42,8 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
         self.collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         fetchUsers()
+        setupItems()
+        
         
 
     }
@@ -63,6 +76,43 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
         }
     }
     
+    //MARK: Handle Logging out
+    
+    fileprivate func setupItems()
+    {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear"), style:.plain , target: self, action: #selector(handleLogOut))
+        navigationItem.rightBarButtonItem?.tintColor = .black
+        
+    }
+    
+    @objc func handleLogOut()
+    {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let logout = UIAlertAction(title: "Log Out", style: .default) { (UIAlertAction) in
+            
+            let firebaseAuth = Auth.auth()
+          do {
+            try firebaseAuth.signOut()
+          } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+          }
+            
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(logout)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
+
+    // MARK: UICollectionViewDataMethods
+
+//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
+
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     {
         let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as? UserProfileHeaderCell
@@ -79,15 +129,6 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
         
     }
     
-
-    // MARK: UICollectionViewDataSource
-
-//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return 7
@@ -116,7 +157,6 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
     {
         return 1
     }
-
     
 
     // MARK: UICollectionViewDelegate

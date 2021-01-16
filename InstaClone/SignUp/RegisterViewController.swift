@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-class ViewController: UIViewController
+class RegisterViewController: UIViewController
 {
     public var isFilledCorrect : Bool = false
     
@@ -91,16 +91,13 @@ class ViewController: UIViewController
         view.addSubview(usernameTextfield)
         view.addSubview(passwordTextfield)
         view.addSubview(signupButton)
-        
+        view.backgroundColor = .white
         //Constraints of Button
         plusButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, padTop: 60, padLeft: 0, padBottom: 0, padRight: 0, width: 140, height: 140)
         plusButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         //set up position of textfield
         setUpStackview()
-        
-        
-        
     }
     
     
@@ -114,7 +111,7 @@ class ViewController: UIViewController
         layoutStack.axis = .vertical
         
         //Setting up positioning
-        layoutStack.anchor(top: plusButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padTop: 30, padLeft: 40, padBottom: 0, padRight: -40 , width: 0, height: 0)
+        layoutStack.anchor(top: plusButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padTop: 30, padLeft: 40, padBottom: 0, padRight: 40 , width: 0, height: 0)
         
         
     }
@@ -231,7 +228,7 @@ class ViewController: UIViewController
 
 //MARK: - Delegate methods for imagePicker
 
-extension ViewController : UIImagePickerControllerDelegate & UINavigationControllerDelegate
+extension RegisterViewController : UIImagePickerControllerDelegate & UINavigationControllerDelegate
 {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
     {
