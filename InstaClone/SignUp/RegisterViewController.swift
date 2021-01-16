@@ -65,6 +65,20 @@ class RegisterViewController: UIViewController
             return txt
         }()
     
+    
+    let promptSignIn: UIButton =
+        {
+            let btn = UIButton()
+            
+            let attributedText = NSMutableAttributedString(string: "Have an account?" , attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14) , NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+            
+            attributedText.append(NSAttributedString(string: " Sign In",attributes: [NSAttributedString.Key.foregroundColor : UIColor.rgb(red: 17, green: 154, blue: 237), NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)]))
+            btn.setAttributedTitle(attributedText, for: .normal)
+            btn.setTitleColor(.blue, for: .normal)
+            btn.addTarget(self, action: #selector(naviagateSignIn), for: .touchUpInside)
+            return btn
+        }()
+    
     let signupButton : UIButton =
         {
             let btn = UIButton()
@@ -96,8 +110,13 @@ class RegisterViewController: UIViewController
         plusButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, padTop: 60, padLeft: 0, padBottom: 0, padRight: 0, width: 140, height: 140)
         plusButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        //set up position of textfield
+        //Set up position of textfield
         setUpStackview()
+        
+        //Setup position of sign in prompt to users that have an account
+        
+        view.addSubview(promptSignIn)
+        promptSignIn.anchor(top:nil, left:view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, padTop: 0, padLeft: 0, padBottom: 25, padRight: 0, width: 0, height: 50)
     }
     
     
@@ -113,6 +132,14 @@ class RegisterViewController: UIViewController
         //Setting up positioning
         layoutStack.anchor(top: plusButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padTop: 30, padLeft: 40, padBottom: 0, padRight: 40 , width: 0, height: 0)
         
+        
+    }
+    
+    //Method to handle navigation to login page
+    @objc func naviagateSignIn ()
+    {
+        let loginVc = LoginViewController()
+        navigationController?.pushViewController(loginVc, animated: true)
         
     }
     
@@ -173,7 +200,7 @@ class RegisterViewController: UIViewController
                     
                     guard let uid = Auth.auth().currentUser?.uid else {return}
                     guard let imageUrl = url?.absoluteString else {return}
-                            
+                    
                     let usernameVal = ["username" : username , "profileURL" : imageUrl]
                     let userDict = [ uid: usernameVal]
                     
@@ -187,7 +214,7 @@ class RegisterViewController: UIViewController
                     })
                     
                 } //Download image URL
-    
+                
             }
             
         }
