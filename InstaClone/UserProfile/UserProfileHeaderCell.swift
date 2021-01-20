@@ -26,14 +26,16 @@ class UserProfileHeaderCell: UICollectionViewCell {
                         print(error!)
                         return
                     }
-                    DispatchQueue.main.async  {
-                        let imageData = try! Data(contentsOf: imageUrl)
-                        DispatchQueue.main.async
-                        {
-                            if let downloadedImage = UIImage(data: imageData) {
-                                self.profileImageView.image = downloadedImage}
+                    
+                    let imageData = try! Data(contentsOf: imageUrl)
+                    
+                    if let downloadedImage = UIImage(data: imageData)
+                    {
+                        DispatchQueue.main.async  {
+                            self.profileImageView.image = downloadedImage
                         }
                     }
+                    
                 }).resume()
             }
         }
@@ -50,95 +52,94 @@ class UserProfileHeaderCell: UICollectionViewCell {
         }()
     
     let gridButton: UIButton =
-    {
-        let btn = UIButton()
-        btn.setImage(#imageLiteral(resourceName: "grid"), for: .normal)
-        return btn
-    }()
+        {
+            let btn = UIButton()
+            btn.setImage(#imageLiteral(resourceName: "grid"), for: .normal)
+            return btn
+        }()
     
     let ribbonButton: UIButton =
-    {
-        let btn = UIButton()
-        btn.setImage(#imageLiteral(resourceName: "list"), for: .normal)
-        return btn
-    }()
+        {
+            let btn = UIButton()
+            btn.setImage(#imageLiteral(resourceName: "list"), for: .normal)
+            return btn
+        }()
     
     let savedButton: UIButton =
-    {
-        let btn = UIButton()
-        btn.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
-        btn.tintColor = UIColor(white: 0, alpha: 0.3)
-        return btn
-    }()
+        {
+            let btn = UIButton()
+            btn.setImage(#imageLiteral(resourceName: "ribbon"), for: .normal)
+            btn.tintColor = UIColor(white: 0, alpha: 0.3)
+            return btn
+        }()
     
     let username: UILabel =
-    {
-        let lbl = UILabel()
-        lbl.text = "Username"
-        lbl.textColor = .black
-        lbl.font = UIFont.boldSystemFont(ofSize:14)
-        return lbl
-    }()
+        {
+            let lbl = UILabel()
+            lbl.textColor = .black
+            lbl.font = UIFont.boldSystemFont(ofSize:14)
+            return lbl
+        }()
     
     let postsLabel : UILabel =
-    {
-        let lbl = UILabel()
-        let attributedText = NSMutableAttributedString(string: "11\n" , attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
-        
-        attributedText.append(NSAttributedString(string: "posts",attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
-        
-        lbl.textColor = .black
-       
-        lbl.textAlignment = .center
-        lbl.numberOfLines = 0
-
-        
-        lbl.attributedText = attributedText
-        return lbl
-    }()
+        {
+            let lbl = UILabel()
+            let attributedText = NSMutableAttributedString(string: "11\n" , attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
+            
+            attributedText.append(NSAttributedString(string: "posts",attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
+            
+            lbl.textColor = .black
+            
+            lbl.textAlignment = .center
+            lbl.numberOfLines = 0
+            
+            
+            lbl.attributedText = attributedText
+            return lbl
+        }()
     
     let editProfile: UIButton =
-    {
-        let btn = UIButton()
-        btn.setTitle("Edit Profile", for: .normal)
-        btn.setTitleColor(.black, for: .normal)
-        btn.layer.borderWidth = 1
-        btn.layer.borderColor = UIColor.lightGray.cgColor
-        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        return btn
-        
-    }()
+        {
+            let btn = UIButton()
+            btn.setTitle("Edit Profile", for: .normal)
+            btn.setTitleColor(.black, for: .normal)
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = UIColor.lightGray.cgColor
+            btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+            return btn
+            
+        }()
     
     let followersLabel : UILabel =
-    {
-        let lbl = UILabel()
-        let attributedText = NSMutableAttributedString(string: "11\n" , attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
-        
-        attributedText.append(NSAttributedString(string: "posts",attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
-        
-        lbl.textColor = .black
-        lbl.textAlignment = .center
-        lbl.numberOfLines = 0
-
-        
-        lbl.attributedText = attributedText
-        return lbl
-    }()
+        {
+            let lbl = UILabel()
+            let attributedText = NSMutableAttributedString(string: "11\n" , attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
+            
+            attributedText.append(NSAttributedString(string: "posts",attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
+            
+            lbl.textColor = .black
+            lbl.textAlignment = .center
+            lbl.numberOfLines = 0
+            
+            
+            lbl.attributedText = attributedText
+            return lbl
+        }()
     
     let followingLabel : UILabel =
-    {
-        let lbl = UILabel()
-        let attributedText = NSMutableAttributedString(string: "11\n" , attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
-        
-        attributedText.append(NSAttributedString(string: "posts",attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
-        
-        lbl.textColor = .black
-        lbl.textAlignment = .center
-        lbl.numberOfLines = 0
-        
-        lbl.attributedText = attributedText
-        return lbl
-    }()
+        {
+            let lbl = UILabel()
+            let attributedText = NSMutableAttributedString(string: "11\n" , attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
+            
+            attributedText.append(NSAttributedString(string: "posts",attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
+            
+            lbl.textColor = .black
+            lbl.textAlignment = .center
+            lbl.numberOfLines = 0
+            
+            lbl.attributedText = attributedText
+            return lbl
+        }()
     
     override init(frame: CGRect)
     {
@@ -152,7 +153,7 @@ class UserProfileHeaderCell: UICollectionViewCell {
         //Setup for edit profie button
         addSubview(editProfile)
         editProfile.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, padTop: 2, padLeft: 0, padBottom: 0, padRight: 0, width: 0, height: 34)
-       
+        
     }
     
     func arrangeLabels()

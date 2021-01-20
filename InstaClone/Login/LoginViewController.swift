@@ -157,7 +157,6 @@ class LoginViewController: UIViewController {
         guard let email = emailTextfield.text , let password = passwordTextfield.text else {return}
         
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-            print("Logged in")
             guard let rootVc = UIApplication.shared.windows.first!.rootViewController as? MainTabBarController else {return}
             rootVc.setUpVc()
             self.dismiss(animated: true, completion: nil)

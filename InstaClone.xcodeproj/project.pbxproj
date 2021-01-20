@@ -24,8 +24,10 @@
 		1F6337FB25B18E2500C49215 /* UserProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6337FA25B18E2400C49215 /* UserProfileHeaderCell.swift */; };
 		1F63380025B1903800C49215 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6337FF25B1903700C49215 /* User.swift */; };
 		1F63382325B2FD7B00C49215 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63382225B2FD7B00C49215 /* LoginViewController.swift */; };
-		1FC962B925B31733000ACF6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FC962B825B31733000ACF6E /* Assets.xcassets */; };
 		1FC962C425B33511000ACF6E /* KeyBoard Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC962C325B33511000ACF6E /* KeyBoard Extension.swift */; };
+		1FE6D55125B805C40031185C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FE6D55025B805C40031185C /* Assets.xcassets */; };
+		1FE6D56625B8207E0031185C /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE6D56525B8207E0031185C /* PhotoController.swift */; };
+		1FE6D63A25B8C8E40031185C /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE6D63925B8C8E10031185C /* PhotoCell.swift */; };
 		B1E74AC3567A734F4C958AA2 /* Pods_InstaClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A870BDDF58A2A4E5EA1475 /* Pods_InstaClone.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,8 +71,10 @@
 		1F6337FA25B18E2400C49215 /* UserProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderCell.swift; sourceTree = "<group>"; };
 		1F6337FF25B1903700C49215 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1F63382225B2FD7B00C49215 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		1FC962B825B31733000ACF6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FC962C325B33511000ACF6E /* KeyBoard Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyBoard Extension.swift"; sourceTree = "<group>"; };
+		1FE6D55025B805C40031185C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../Downloads/InstagramFirebase49_multiline_textview/InstagramFirebase/ios/InstagramFirebase/Assets.xcassets; sourceTree = "<group>"; };
+		1FE6D56525B8207E0031185C /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
+		1FE6D63925B8C8E10031185C /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		2A26AEDEB78AC2C0FE706030 /* Pods-InstaClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone.debug.xcconfig"; path = "Target Support Files/Pods-InstaClone/Pods-InstaClone.debug.xcconfig"; sourceTree = "<group>"; };
 		93A870BDDF58A2A4E5EA1475 /* Pods_InstaClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -126,18 +130,19 @@
 		1F200BF125A458A900BC315E /* InstaClone */ = {
 			isa = PBXGroup;
 			children = (
+				1FE6D55C25B81F6A0031185C /* Photo */,
 				1F63382A25B2FE5700C49215 /* Register */,
 				1F63382125B2FD2300C49215 /* Login */,
 				1F6337E925B1745900C49215 /* UserProfile */,
 				1F200C2D25A4686200BC315E /* Helper */,
 				1F200BF225A458A900BC315E /* AppDelegate.swift */,
 				1F200BF425A458A900BC315E /* SceneDelegate.swift */,
+				1F6337E425B173F200C49215 /* MainTabBarController.swift */,
 				1F200BF825A458A900BC315E /* Main.storyboard */,
 				1F200BFD25A458B000BC315E /* LaunchScreen.storyboard */,
 				1F200C0025A458B000BC315E /* Info.plist */,
 				1F5A2E7D25A49F9500626E05 /* GoogleService-Info.plist */,
-				1FC962B825B31733000ACF6E /* Assets.xcassets */,
-				1F6337E425B173F200C49215 /* MainTabBarController.swift */,
+				1FE6D55025B805C40031185C /* Assets.xcassets */,
 			);
 			path = InstaClone;
 			sourceTree = "<group>";
@@ -194,6 +199,15 @@
 				1F200BF625A458A900BC315E /* RegisterViewController.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		1FE6D55C25B81F6A0031185C /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				1FE6D56525B8207E0031185C /* PhotoController.swift */,
+				1FE6D63925B8C8E10031185C /* PhotoCell.swift */,
+			);
+			path = Photo;
 			sourceTree = "<group>";
 		};
 		AC3D70CFBEDDFA2DCDBE1114 /* Pods */ = {
@@ -321,7 +335,7 @@
 				1F200BFF25A458B000BC315E /* LaunchScreen.storyboard in Resources */,
 				1F5A2E7E25A49F9500626E05 /* GoogleService-Info.plist in Resources */,
 				1F200BFA25A458A900BC315E /* Main.storyboard in Resources */,
-				1FC962B925B31733000ACF6E /* Assets.xcassets in Resources */,
+				1FE6D55125B805C40031185C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +410,8 @@
 				1F6337FB25B18E2500C49215 /* UserProfileHeaderCell.swift in Sources */,
 				1F200BF325A458A900BC315E /* AppDelegate.swift in Sources */,
 				1F6337EB25B1747800C49215 /* UserProfileController.swift in Sources */,
+				1FE6D63A25B8C8E40031185C /* PhotoCell.swift in Sources */,
+				1FE6D56625B8207E0031185C /* PhotoController.swift in Sources */,
 				1FC962C425B33511000ACF6E /* KeyBoard Extension.swift in Sources */,
 				1F63380025B1903800C49215 /* User.swift in Sources */,
 				1F6337E525B173F200C49215 /* MainTabBarController.swift in Sources */,

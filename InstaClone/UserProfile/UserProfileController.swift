@@ -1,9 +1,3 @@
-//
-//  UserProfileController.swift
-//  InstaClone
-//
-//  Created by Kingsley Charles on 15/01/2021.
-//
 
 import UIKit
 import FirebaseDatabase
@@ -22,17 +16,6 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if Auth.auth().currentUser == nil
-        {
-            DispatchQueue.main.async {
-                let loginVc = LoginViewController()
-                let nav = UINavigationController(rootViewController: loginVc)
-                nav.modalPresentationStyle = .fullScreen
-                self.present(nav, animated: true, completion: nil)
-
-            }
-        }
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -43,9 +26,6 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
         view.addSubview(collectionView)
         fetchUsers()
         setupItems()
-        
-        
-
     }
     
     //MARK: Function to fetch the username
@@ -64,8 +44,9 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
                 DispatchQueue.main.async
                 {
                     self.navigationItem.title = username
-                    let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
-                    self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+                    
+//                    let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+//                    self.navigationController?.navigationBar.titleTextAttributes = textAttributes
                 }
                 
                 self.collectionView.reloadData()
