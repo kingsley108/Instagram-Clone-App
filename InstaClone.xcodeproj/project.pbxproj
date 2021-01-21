@@ -28,6 +28,7 @@
 		1FE6D55125B805C40031185C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FE6D55025B805C40031185C /* Assets.xcassets */; };
 		1FE6D56625B8207E0031185C /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE6D56525B8207E0031185C /* PhotoController.swift */; };
 		1FE6D63A25B8C8E40031185C /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE6D63925B8C8E10031185C /* PhotoCell.swift */; };
+		1FE6D64A25B950600031185C /* PhotoHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE6D64925B950600031185C /* PhotoHeaderCell.swift */; };
 		B1E74AC3567A734F4C958AA2 /* Pods_InstaClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93A870BDDF58A2A4E5EA1475 /* Pods_InstaClone.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		1FE6D55025B805C40031185C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../Downloads/InstagramFirebase49_multiline_textview/InstagramFirebase/ios/InstagramFirebase/Assets.xcassets; sourceTree = "<group>"; };
 		1FE6D56525B8207E0031185C /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		1FE6D63925B8C8E10031185C /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		1FE6D64925B950600031185C /* PhotoHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHeaderCell.swift; sourceTree = "<group>"; };
 		2A26AEDEB78AC2C0FE706030 /* Pods-InstaClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone.debug.xcconfig"; path = "Target Support Files/Pods-InstaClone/Pods-InstaClone.debug.xcconfig"; sourceTree = "<group>"; };
 		93A870BDDF58A2A4E5EA1475 /* Pods_InstaClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -206,6 +208,7 @@
 			children = (
 				1FE6D56525B8207E0031185C /* PhotoController.swift */,
 				1FE6D63925B8C8E10031185C /* PhotoCell.swift */,
+				1FE6D64925B950600031185C /* PhotoHeaderCell.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				1F6337FB25B18E2500C49215 /* UserProfileHeaderCell.swift in Sources */,
 				1F200BF325A458A900BC315E /* AppDelegate.swift in Sources */,
 				1F6337EB25B1747800C49215 /* UserProfileController.swift in Sources */,
+				1FE6D64A25B950600031185C /* PhotoHeaderCell.swift in Sources */,
 				1FE6D63A25B8C8E40031185C /* PhotoCell.swift in Sources */,
 				1FE6D56625B8207E0031185C /* PhotoController.swift in Sources */,
 				1FC962C425B33511000ACF6E /* KeyBoard Extension.swift in Sources */,

@@ -8,20 +8,20 @@ private let headerIdentifier = "headerCell"
 class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowLayout
 {
     var latestPhotoAssetsFetched: PHFetchResult<PHAsset>? = nil
-    
+    var selectedAsset = 0
     var images = [UIImage]()
+    var headerImage:PhotoHeaderCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .yellow
+        collectionView.backgroundColor = .white
         
         // Register cell classes
         self.collectionView!.register(PhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+        self.collectionView.register(PhotoHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
         
         addBarButton()
-        self.latestPhotoAssetsFetched = self.fetchLatestPhotos(forCount: 10)
-        
+        self.latestPhotoAssetsFetched = self.fetchLatestPhotos(forCount: 40)
     }
     
     
@@ -40,7 +40,33 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
         // Fetch the photos.
         return PHAsset.fetchAssets(with: .image, options: options)
     }
-    
+    //Fetch users photos
+    func requestHeaderImages()
+    {
+        
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.deliveryMode = .highQualityFormat
+        // Get the latest asset
+        guard let asset = self.latestPhotoAssetsFetched?[selectedAsset] else {
+            print("couldn't return assets", selectedAsset)
+            return
+        }
+        headerImage?.representedAssetIdentifier = asset.localIdentifier
+        PHImageManager.default().requestImage(for: asset,
+                                              targetSize: CGSize(width: 600, height: 600),
+                                              contentMode: .aspectFill,
+                                              options: requestOptions) { (image, _) in
+            
+            if self.headerImage?.representedAssetIdentifier == asset.localIdentifier
+            {
+                guard let image = image else {return}
+                DispatchQueue.main.async {
+                    self.headerImage?.photoHeader.image = image
+                }
+            }
+        }
+       
+    }
     
     func addBarButton()
     {
@@ -106,11 +132,21 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath)
+        self.headerImage = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as? PhotoHeaderCell
         
-        header.backgroundColor = .red
+        requestHeaderImages()
         
-        return header
+        
+//        DispatchQueue.main.async {
+//            self.headerImage?.photoHeader.image = self.images[0]
+//        }
+        return headerImage!
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        selectedAsset = indexPath.item
+        requestHeaderImages()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -126,7 +162,7 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
         cell!.representedAssetIdentifier = asset.localIdentifier
         PHImageManager.default().requestImage(for: asset,
                                               targetSize: CGSize(width: 200, height: 200),
-                                              contentMode: .aspectFill,
+                                              contentMode: .default,
                                               options: requestOptions) { (image, _) in
             
             if cell!.representedAssetIdentifier == asset.localIdentifier
