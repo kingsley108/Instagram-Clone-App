@@ -73,7 +73,7 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelClicked))
         navigationItem.leftBarButtonItem?.tintColor = .black
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextClicked))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(shareOpt))
         navigationItem.rightBarButtonItem?.tintColor = .black
         
     }
@@ -82,10 +82,11 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
         return true
     }
     
-    @objc func nextClicked ()
+    @objc func shareOpt ()
     {
-        print("next clicked")
-        
+        let vc = SharePhotoViewController()
+        vc.imageSetter = headerImage?.photoHeader.image
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func cancelClicked ()
@@ -147,6 +148,7 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
     {
         selectedAsset = indexPath.item
         requestHeaderImages()
+        collectionView.setContentOffset(CGPoint(x:0,y: -90), animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
