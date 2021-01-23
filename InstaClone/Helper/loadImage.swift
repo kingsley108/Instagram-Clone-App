@@ -7,14 +7,34 @@
 
 import UIKit
 
-class loadImage: UIImageView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+class loadImage: UIImageView
+{
+    var urlString: String?
+    
+    func displayImage(urlString: String)
+    {
+        self.urlString = urlString
+        if let imageUrl = URL(string: urlString)
+        {
+            URLSession.shared.dataTask(with: imageUrl, completionHandler: { (data, response, error) in
+                
+                if self.urlString != imageUrl.absoluteString {
+                    return
+                }
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                
+                guard let data = data else {return}
+                
+                if let downloadedImage = UIImage(data: data)
+                {
+                    DispatchQueue.main.async  {
+                        self.image = downloadedImage}
+                }
+                
+            }).resume()
+        }
     }
-    */
-
 }

@@ -18,33 +18,15 @@ class UserProfileHeaderCell: UICollectionViewCell {
             
             //Get the Image from this using url session
             guard let urlString = user?.profleimageUrl else {return}
-            if let imageUrl = URL(string: urlString)
-            {
-                URLSession.shared.dataTask(with: imageUrl, completionHandler: { (data, response, error) in
-                    
-                    if error != nil {
-                        print(error!)
-                        return
-                    }
-                    
-                    let imageData = try! Data(contentsOf: imageUrl)
-                    
-                    if let downloadedImage = UIImage(data: imageData)
-                    {
-                        DispatchQueue.main.async  {
-                            self.profileImageView.image = downloadedImage
-                        }
-                    }
-                    
-                }).resume()
-            }
+            profileImageView.displayImage(urlString: urlString)
+            
         }
     }
     
     
-    let profileImageView : UIImageView =
+    let profileImageView: loadImage  =
         {
-            let iv = UIImageView()
+            let iv = loadImage()
             iv.layer.cornerRadius = 40
             iv.clipsToBounds = true
             iv.contentMode = .scaleAspectFill

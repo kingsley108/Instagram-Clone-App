@@ -9,19 +9,39 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
 {
     var latestPhotoAssetsFetched: PHFetchResult<PHAsset>? = nil
     var selectedAsset = 0
-    var images = [UIImage]()
+    //var cellImages = [UIImage]()
+    //var headerImages = [UIImage]()
     var headerImage:PhotoHeaderCell?
+    let count = 40
+    var assets = [PHAsset]()
+    let requestOptions = PHImageRequestOptions()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
         
+        PHPhotoLibrary.requestAuthorization { status in
+            switch status {
+            case .authorized:
+                self.latestPhotoAssetsFetched = self.fetchLatestPhotos(forCount: self.count)
+                self.requestImages()
+                print("Found assets")
+            case .denied, .restricted:
+                print("Not allowed")
+            case .notDetermined:
+                // Should not see this when requesting
+                print("Not determined yet")
+            case .limited:
+                print("Not determined yet")
+            @unknown default:
+                print("Not determined yet")
+            }
+        }
+       
         // Register cell classes
-        self.collectionView!.register(PhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView.register(PhotoHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
-        
+        collectionView!.register(PhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(PhotoHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
         addBarButton()
-        self.latestPhotoAssetsFetched = self.fetchLatestPhotos(forCount: 40)
     }
     
     
@@ -36,36 +56,28 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
         // Add sortDescriptor so the lastest photos will be returned.
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         options.sortDescriptors = [sortDescriptor]
-        
         // Fetch the photos.
         return PHAsset.fetchAssets(with: .image, options: options)
     }
     //Fetch users photos
-    func requestHeaderImages()
+    func requestImages()
     {
-        
-        let requestOptions = PHImageRequestOptions()
         requestOptions.deliveryMode = .highQualityFormat
         // Get the latest asset
-        guard let asset = self.latestPhotoAssetsFetched?[selectedAsset] else {
-            print("couldn't return assets", selectedAsset)
-            return
-        }
-        headerImage?.representedAssetIdentifier = asset.localIdentifier
-        PHImageManager.default().requestImage(for: asset,
-                                              targetSize: CGSize(width: 600, height: 600),
-                                              contentMode: .aspectFill,
-                                              options: requestOptions) { (image, _) in
-            
-            if self.headerImage?.representedAssetIdentifier == asset.localIdentifier
-            {
-                guard let image = image else {return}
-                DispatchQueue.main.async {
-                    self.headerImage?.photoHeader.image = image
-                }
+        for number in 0...count-1
+        {
+            guard let asset = self.latestPhotoAssetsFetched?[number] else {
+                print("couldn't return assets", selectedAsset)
+                return
             }
+            assets.append(asset)
+           
         }
-       
+        DispatchQueue.main.async
+        {
+            self.collectionView.reloadData()
+        }
+        
     }
     
     func addBarButton()
@@ -92,7 +104,6 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
     @objc func cancelClicked ()
     {
         self.dismiss(animated: true, completion: nil)
-        
     }
     
     // MARK: UICollectionViewDataSource
@@ -103,7 +114,7 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return latestPhotoAssetsFetched!.count
+        return assets.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize
@@ -134,33 +145,56 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     {
         self.headerImage = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as? PhotoHeaderCell
-        
-        requestHeaderImages()
-        
-        
-//        DispatchQueue.main.async {
-//            self.headerImage?.photoHeader.image = self.images[0]
-//        }
+         
+        if assets.count != 0
+        {
+            let asset = assets[indexPath.item]
+            
+            headerImage?.representedAssetIdentifier = asset.localIdentifier
+            PHImageManager.default().requestImage(for: asset,
+                                                  targetSize: CGSize(width: 600, height: 600),
+                                                  contentMode: .default,
+                                                  options: requestOptions) { (image, _) in
+                
+                if self.headerImage?.representedAssetIdentifier == asset.localIdentifier
+                {
+                    print("dne")
+                    self.headerImage?.photoHeader.image = image
+                }
+            }
+        }
+      
         return headerImage!
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        selectedAsset = indexPath.item
-        requestHeaderImages()
+     selectedAsset = indexPath.item
+        let asset = assets[selectedAsset]
+        
+        headerImage?.representedAssetIdentifier = asset.localIdentifier
+        PHImageManager.default().requestImage(for: asset,
+                                              targetSize: CGSize(width: 600, height: 600),
+                                              contentMode: .default,
+                                              options: requestOptions) { (image, _) in
+            
+            if self.headerImage?.representedAssetIdentifier == asset.localIdentifier
+            {
+                print("dne selected")
+                self.headerImage?.photoHeader.image = image
+            }
+        }
         collectionView.setContentOffset(CGPoint(x:0,y: -90), animated: true)
+    
     }
+
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotoCell
-        let requestOptions = PHImageRequestOptions()
-        requestOptions.deliveryMode = .highQualityFormat
         
-        // Get the latest asset
-        guard let asset = self.latestPhotoAssetsFetched?[indexPath.item] else {
-            print("couldn't return assets", indexPath.item)
-            return cell!
-        }
+        let asset = assets[indexPath.item]
+        
         cell!.representedAssetIdentifier = asset.localIdentifier
         PHImageManager.default().requestImage(for: asset,
                                               targetSize: CGSize(width: 200, height: 200),
