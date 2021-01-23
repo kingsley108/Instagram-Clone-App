@@ -61,16 +61,15 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
     {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let ref = Database.database().reference()
-        ref.child("posts").child(uid).observe(.value) { (snapshot) in
-            
+        ref.child("posts").child(uid).queryOrdered(byChild: "Creation Date").observe(.value) { (snapshot) in
+            self.posts.removeAll()
             guard let dictionary = snapshot.value as? [String:Any] else {return}
             dictionary.forEach { (key,val) in
-                
                 guard let postDictionary = val as? [String:Any] else {return}
                 let userPost = Posts(dict: postDictionary)
                 self.posts.insert(userPost, at: 0)
-                self.collectionView.reloadData()
             }
+            self.collectionView.reloadData()
            
         } withCancel: { (err) in
             print("Failed to get posts from user" , err)

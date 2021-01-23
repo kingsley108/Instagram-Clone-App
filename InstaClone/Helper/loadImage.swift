@@ -17,23 +17,21 @@ class loadImage: UIImageView
         if let imageUrl = URL(string: urlString)
         {
             URLSession.shared.dataTask(with: imageUrl, completionHandler: { (data, response, error) in
-                
-                if self.urlString != imageUrl.absoluteString {
-                    return
+                print(self.urlString)
+                print(imageUrl.absoluteString)
+                if self.urlString == imageUrl.absoluteString
+                {
+                    guard let data = data else {return}
+                    
+                    if let downloadedImage = UIImage(data: data)
+                    {
+                        DispatchQueue.main.async  {self.image = downloadedImage}
+                    }
                 }
                 if error != nil {
                     print(error!)
                     return
                 }
-                
-                guard let data = data else {return}
-                
-                if let downloadedImage = UIImage(data: data)
-                {
-                    DispatchQueue.main.async  {
-                        self.image = downloadedImage}
-                }
-                
             }).resume()
         }
     }

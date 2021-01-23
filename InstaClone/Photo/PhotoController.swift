@@ -25,7 +25,6 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
             case .authorized:
                 self.latestPhotoAssetsFetched = self.fetchLatestPhotos(forCount: self.count)
                 self.requestImages()
-                print("Found assets")
             case .denied, .restricted:
                 print("Not allowed")
             case .notDetermined:
@@ -59,6 +58,7 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
         // Fetch the photos.
         return PHAsset.fetchAssets(with: .image, options: options)
     }
+    
     //Fetch users photos
     func requestImages()
     {
@@ -73,11 +73,26 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
             assets.append(asset)
            
         }
-        DispatchQueue.main.async
-        {
-            self.collectionView.reloadData()
-        }
+        DispatchQueue.main.async{self.collectionView.reloadData()}
         
+    }
+    //
+    func geHeaderAsset()
+    {
+        let asset = assets[selectedAsset]
+        headerImage?.representedAssetIdentifier = asset.localIdentifier
+        PHImageManager.default().requestImage(for: asset,
+                                              targetSize: CGSize(width: 600, height: 600),
+                                              contentMode: .default,
+                                              options: requestOptions) { (image, _) in
+            
+            if self.headerImage?.representedAssetIdentifier == asset.localIdentifier
+            {
+                
+                guard let image = image else {return}
+                self.headerImage?.photoHeader.image = image
+            }
+        }
     }
     
     func addBarButton()
@@ -148,44 +163,18 @@ class PhotoController: UICollectionViewController, UICollectionViewDelegateFlowL
          
         if assets.count != 0
         {
-            let asset = assets[indexPath.item]
-            
-            headerImage?.representedAssetIdentifier = asset.localIdentifier
-            PHImageManager.default().requestImage(for: asset,
-                                                  targetSize: CGSize(width: 600, height: 600),
-                                                  contentMode: .default,
-                                                  options: requestOptions) { (image, _) in
-                
-                if self.headerImage?.representedAssetIdentifier == asset.localIdentifier
-                {
-                    print("dne")
-                    self.headerImage?.photoHeader.image = image
-                }
-            }
+            geHeaderAsset()
         }
       
         return headerImage!
     }
     
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-     selectedAsset = indexPath.item
-        let asset = assets[selectedAsset]
-        
-        headerImage?.representedAssetIdentifier = asset.localIdentifier
-        PHImageManager.default().requestImage(for: asset,
-                                              targetSize: CGSize(width: 600, height: 600),
-                                              contentMode: .default,
-                                              options: requestOptions) { (image, _) in
-            
-            if self.headerImage?.representedAssetIdentifier == asset.localIdentifier
-            {
-                print("dne selected")
-                self.headerImage?.photoHeader.image = image
-            }
-        }
+        selectedAsset = indexPath.item
+        geHeaderAsset()
         collectionView.setContentOffset(CGPoint(x:0,y: -90), animated: true)
-    
     }
 
     
