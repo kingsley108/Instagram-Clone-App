@@ -15,7 +15,5 @@ struct User {
     {
         self.username = dictionary["username"] as! String
         self.profleimageUrl = dictionary["profileURL"] as! String
-        
-        
     }
 }
