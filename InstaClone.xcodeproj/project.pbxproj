@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F16631E25BCA2A100F3FB50 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F16631D25BCA2A100F3FB50 /* HomeController.swift */; };
+		1F16632325BCA3C200F3FB50 /* HomeCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F16632225BCA3C200F3FB50 /* HomeCustomCell.swift */; };
 		1F200BF325A458A900BC315E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F200BF225A458A900BC315E /* AppDelegate.swift */; };
 		1F200BF525A458A900BC315E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F200BF425A458A900BC315E /* SceneDelegate.swift */; };
 		1F200BF725A458A900BC315E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F200BF625A458A900BC315E /* RegisterViewController.swift */; };
@@ -24,7 +26,7 @@
 		1F6337FB25B18E2500C49215 /* UserProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6337FA25B18E2400C49215 /* UserProfileHeaderCell.swift */; };
 		1F63380025B1903800C49215 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6337FF25B1903700C49215 /* User.swift */; };
 		1F63382325B2FD7B00C49215 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63382225B2FD7B00C49215 /* LoginViewController.swift */; };
-		1F9E96F725BC682C00BB7AB2 /* loadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E96F625BC682C00BB7AB2 /* loadImage.swift */; };
+		1F9E96F725BC682C00BB7AB2 /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E96F625BC682C00BB7AB2 /* LoadImage.swift */; };
 		1FC962C425B33511000ACF6E /* KeyBoard Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC962C325B33511000ACF6E /* KeyBoard Extension.swift */; };
 		1FDC8C2625BAB0CF00F057C1 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC8C2525BAB0CF00F057C1 /* Posts.swift */; };
 		1FDC8C2E25BAB2BE00F057C1 /* UserPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC8C2D25BAB2BE00F057C1 /* UserPostsCell.swift */; };
@@ -55,6 +57,8 @@
 
 /* Begin PBXFileReference section */
 		1855B3D27DF64292D35D00E1 /* Pods-InstaClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaClone.release.xcconfig"; path = "Target Support Files/Pods-InstaClone/Pods-InstaClone.release.xcconfig"; sourceTree = "<group>"; };
+		1F16631D25BCA2A100F3FB50 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		1F16632225BCA3C200F3FB50 /* HomeCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCustomCell.swift; sourceTree = "<group>"; };
 		1F200BEF25A458A900BC315E /* InstaClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F200BF225A458A900BC315E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F200BF425A458A900BC315E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,7 +80,7 @@
 		1F6337FA25B18E2400C49215 /* UserProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderCell.swift; sourceTree = "<group>"; };
 		1F6337FF25B1903700C49215 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1F63382225B2FD7B00C49215 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		1F9E96F625BC682C00BB7AB2 /* loadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadImage.swift; sourceTree = "<group>"; };
+		1F9E96F625BC682C00BB7AB2 /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		1FC962C325B33511000ACF6E /* KeyBoard Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyBoard Extension.swift"; sourceTree = "<group>"; };
 		1FDC8C2525BAB0CF00F057C1 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		1FDC8C2D25BAB2BE00F057C1 /* UserPostsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostsCell.swift; sourceTree = "<group>"; };
@@ -115,6 +119,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F16631C25BCA27800F3FB50 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				1F16631D25BCA2A100F3FB50 /* HomeController.swift */,
+				1F16632225BCA3C200F3FB50 /* HomeCustomCell.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
 		1F200BE625A458A800BC315E = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +153,7 @@
 		1F200BF125A458A900BC315E /* InstaClone */ = {
 			isa = PBXGroup;
 			children = (
+				1F16631C25BCA27800F3FB50 /* HomeView */,
 				1FDC8C2425BAB0BE00F057C1 /* Models */,
 				1FE6D55C25B81F6A0031185C /* Photo */,
 				1F63382A25B2FE5700C49215 /* Register */,
@@ -182,7 +196,7 @@
 			children = (
 				1F200C2E25A4687F00BC315E /* Extensions.swift */,
 				1FC962C325B33511000ACF6E /* KeyBoard Extension.swift */,
-				1F9E96F625BC682C00BB7AB2 /* loadImage.swift */,
+				1F9E96F625BC682C00BB7AB2 /* LoadImage.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -439,10 +453,12 @@
 				1FE6D63A25B8C8E40031185C /* PhotoCell.swift in Sources */,
 				1FE6D56625B8207E0031185C /* PhotoController.swift in Sources */,
 				1FC962C425B33511000ACF6E /* KeyBoard Extension.swift in Sources */,
-				1F9E96F725BC682C00BB7AB2 /* loadImage.swift in Sources */,
+				1F9E96F725BC682C00BB7AB2 /* LoadImage.swift in Sources */,
 				1FE6D64F25B965320031185C /* SharePhotoViewController.swift in Sources */,
 				1F63380025B1903800C49215 /* User.swift in Sources */,
+				1F16631E25BCA2A100F3FB50 /* HomeController.swift in Sources */,
 				1F6337E525B173F200C49215 /* MainTabBarController.swift in Sources */,
+				1F16632325BCA3C200F3FB50 /* HomeCustomCell.swift in Sources */,
 				1F200BF525A458A900BC315E /* SceneDelegate.swift in Sources */,
 				1F200C2F25A4687F00BC315E /* Extensions.swift in Sources */,
 			);

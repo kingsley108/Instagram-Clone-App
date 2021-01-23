@@ -24,9 +24,9 @@ class UserProfileHeaderCell: UICollectionViewCell {
     }
     
     
-    let profileImageView: loadImage  =
+    let profileImageView: LoadImage  =
         {
-            let iv = loadImage()
+            let iv = LoadImage()
             iv.layer.cornerRadius = 40
             iv.clipsToBounds = true
             iv.contentMode = .scaleAspectFill

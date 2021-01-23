@@ -13,7 +13,6 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
     var user : User?
     var posts = [Posts]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchUsers()
@@ -28,7 +27,6 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
         collectionView.register(UserPostsCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView.backgroundColor = .white
         view.addSubview(collectionView)
-        
     }
     
     //MARK: Function to fetch the username

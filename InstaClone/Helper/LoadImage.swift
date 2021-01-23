@@ -7,21 +7,28 @@
 
 import UIKit
 
-class loadImage: UIImageView
+class LoadImage: UIImageView
 {
     var urlString: String?
+    var cache = [String: Data]()
     
     func displayImage(urlString: String)
     {
+        if let data = cache[urlString]
+        {
+            DispatchQueue.main.async{self.image = UIImage(data: data)}
+            return
+        }
+        
         self.urlString = urlString
         if let imageUrl = URL(string: urlString)
         {
             URLSession.shared.dataTask(with: imageUrl, completionHandler: { (data, response, error) in
-                print(self.urlString)
-                print(imageUrl.absoluteString)
                 if self.urlString == imageUrl.absoluteString
                 {
                     guard let data = data else {return}
+                    
+                    self.cache[urlString] = data
                     
                     if let downloadedImage = UIImage(data: data)
                     {

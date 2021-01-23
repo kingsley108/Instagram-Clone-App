@@ -18,9 +18,9 @@ class UserPostsCell: UICollectionViewCell
         } 
     }
     
-    let newPostImage: loadImage =
+    let newPostImage: LoadImage =
     {
-        let iv = loadImage()
+        let iv = LoadImage()
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill
         return iv
