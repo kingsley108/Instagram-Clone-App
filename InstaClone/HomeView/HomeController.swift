@@ -37,13 +37,12 @@ class HomeController: UICollectionViewController,UICollectionViewDelegateFlowLay
             let user = User(dictionary: userDict)
             
             //Fetch Posts
-            ref.child("posts").child(uid).queryOrdered(byChild: "Creation Date").observeSingleEvent(of: .value) { (snapshot) in
-                self.posts.removeAll()
+            ref.child("posts").child(uid).observeSingleEvent(of: .value) { (snapshot) in
                 guard let dictionary = snapshot.value as? [String:Any] else {return}
                 dictionary.forEach { (key,val) in
                     guard let postDictionary = val as? [String:Any] else {return}
                     let userPost = Posts(user: user, dict: postDictionary)
-                    self.posts.insert(userPost, at: 0)
+                    self.posts.append(userPost)
                 }
                 self.collectionView.reloadData()
             } withCancel: { (err) in
@@ -53,8 +52,6 @@ class HomeController: UICollectionViewController,UICollectionViewDelegateFlowLay
         } withCancel: { (err) in
             print("faied to get users")
         }
-        
-        
     }
     
     // MARK: UICollectionViewDataSource

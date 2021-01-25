@@ -99,7 +99,7 @@ class SharePhotoViewController: UIViewController {
         let ref = Database.database().reference()
         guard let caption = caption.text else {return}
         let creationDate = Date().timeIntervalSince1970
-        let values : [String: Any] = ["imageUrl": imageUrl,"Caption": caption,"imageWidth": width, "imageHeight": height, "Creation Date": creationDate]
+        let values : [String: Any] = ["imageUrl": imageUrl,"Caption": caption,"imageWidth": width, "imageHeight": height, "creationDate": creationDate]
         
         let path = ref.child("posts").child(uid).childByAutoId()
         path.updateChildValues(values) { (err, reference) in

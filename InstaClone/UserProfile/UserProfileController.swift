@@ -35,7 +35,7 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
     {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let ref = Database.database().reference().child("users").child(uid)
-        ref.queryOrdered(byChild: "Creation Date").observeSingleEvent(of: .value) { (snapshot) in
+        ref.observeSingleEvent(of: .value) { (snapshot) in
             if let dictionary = snapshot.value as? [String:Any]
             {
                 let user = User(dictionary: dictionary)
@@ -58,18 +58,15 @@ class UserProfileController: UICollectionViewController , UICollectionViewDelega
     func fetchPosts()
     {
         guard let uid = Auth.auth().currentUser?.uid else {return}
-        let ref = Database.database().reference()
-        ref.child("posts").child(uid).queryOrdered(byChild: "Creation Date").observe(.value) { (snapshot) in
-            self.posts.removeAll()
+        let ref = Database.database().reference().child("posts").child(uid)
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded) { (snapshot) in
             guard let dictionary = snapshot.value as? [String:Any] else {return}
-            dictionary.forEach { (key,val) in
-                guard let postDictionary = val as? [String:Any] else {return}
-                guard let user = self.user else {return}
-                let userPost = Posts(user: user, dict: postDictionary)
-                self.posts.insert(userPost, at: 0)
-            }
+            guard let user = self.user else {return}
+            let userPost = Posts(user: user, dict: dictionary)
+            print(userPost.caption)
+            self.posts.insert(userPost, at: 0)
             self.collectionView.reloadData()
-           
+            
         } withCancel: { (err) in
             print("Failed to get posts from user" , err)
         }
