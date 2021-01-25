@@ -3,8 +3,6 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-
-
 class HomeController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     private let reuseIdentifier = "Cell"
     var posts = [Posts]()
@@ -12,12 +10,12 @@ class HomeController: UICollectionViewController,UICollectionViewDelegateFlowLay
     override func viewDidLoad() {
         super.viewDidLoad()
         // self.clearsSelectionOnViewWillAppear = false
-
+        
+        collectionView.backgroundColor = .white
         // Register cell classes
         self.collectionView!.register(HomeCustomCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         setUpNavigationTitle()
-        collectionView.backgroundColor = .white
         fetchPosts()
     }
     
@@ -56,14 +54,13 @@ class HomeController: UICollectionViewController,UICollectionViewDelegateFlowLay
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? HomeCustomCell
-        cell?.backgroundColor = .blue
         cell?.post = self.posts[indexPath.row]
         return cell!
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        return CGSize(width: view.frame.width, height: 200)
-        
+        let height = (56 + view.frame.width + 110)
+        return CGSize(width: view.frame.width, height: height)
     }
 }
