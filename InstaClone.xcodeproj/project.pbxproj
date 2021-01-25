@@ -18,6 +18,7 @@
 		1F200C1525A458B000BC315E /* InstaCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F200C1425A458B000BC315E /* InstaCloneUITests.swift */; };
 		1F200C2F25A4687F00BC315E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F200C2E25A4687F00BC315E /* Extensions.swift */; };
 		1F200C3725A473B400BC315E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F200C3625A473B400BC315E /* GoogleService-Info.plist */; };
+		1F3E951125BEE5CD009A1AB3 /* FirebaseExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E951025BEE5CC009A1AB3 /* FirebaseExt.swift */; };
 		1F5A2E7E25A49F9500626E05 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F5A2E7D25A49F9500626E05 /* GoogleService-Info.plist */; };
 		1F5A2E7F25A49F9500626E05 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F5A2E7D25A49F9500626E05 /* GoogleService-Info.plist */; };
 		1F5A2E8025A49F9500626E05 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F5A2E7D25A49F9500626E05 /* GoogleService-Info.plist */; };
@@ -74,6 +75,7 @@
 		1F200C1625A458B000BC315E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F200C2E25A4687F00BC315E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1F200C3625A473B400BC315E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1F3E951025BEE5CC009A1AB3 /* FirebaseExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseExt.swift; sourceTree = "<group>"; };
 		1F5A2E7D25A49F9500626E05 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F6337E425B173F200C49215 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1F6337EA25B1747800C49215 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				1F200C2E25A4687F00BC315E /* Extensions.swift */,
 				1FC962C325B33511000ACF6E /* KeyBoard Extension.swift */,
 				1F9E96F625BC682C00BB7AB2 /* LoadImage.swift */,
+				1F3E951025BEE5CC009A1AB3 /* FirebaseExt.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				1F6337EB25B1747800C49215 /* UserProfileController.swift in Sources */,
 				1FDC8C2E25BAB2BE00F057C1 /* UserPostsCell.swift in Sources */,
 				1FE6D64A25B950600031185C /* PhotoHeaderCell.swift in Sources */,
+				1F3E951125BEE5CD009A1AB3 /* FirebaseExt.swift in Sources */,
 				1FE6D63A25B8C8E40031185C /* PhotoCell.swift in Sources */,
 				1FE6D56625B8207E0031185C /* PhotoController.swift in Sources */,
 				1FC962C425B33511000ACF6E /* KeyBoard Extension.swift in Sources */,

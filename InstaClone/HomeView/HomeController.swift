@@ -29,28 +29,27 @@ class HomeController: UICollectionViewController,UICollectionViewDelegateFlowLay
     func fetchPosts()
     {
         guard let uid = Auth.auth().currentUser?.uid else {return}
+       
+        Database.database().fecthUserWithID(uid: uid) { (user) in
+            self.fetchpostswithuser(user: user)
+        }
+    }
+    
+    fileprivate func fetchpostswithuser(user: User)
+    {
+        //Fetch Posts
+      let uid = user.userId
         let ref = Database.database().reference()
-        
-        //Fetch user
-        ref.child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
-            guard let userDict = snapshot.value as? [String: Any] else {return}
-            let user = User(dictionary: userDict)
-            
-            //Fetch Posts
-            ref.child("posts").child(uid).observeSingleEvent(of: .value) { (snapshot) in
-                guard let dictionary = snapshot.value as? [String:Any] else {return}
-                dictionary.forEach { (key,val) in
-                    guard let postDictionary = val as? [String:Any] else {return}
-                    let userPost = Posts(user: user, dict: postDictionary)
-                    self.posts.append(userPost)
-                }
-                self.collectionView.reloadData()
-            } withCancel: { (err) in
-                print("Failed to get posts from user" , err)
+        ref.child("posts").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            guard let dictionary = snapshot.value as? [String:Any] else {return}
+            dictionary.forEach { (key,val) in
+                guard let postDictionary = val as? [String:Any] else {return}
+                let userPost = Posts(user: user, dict: postDictionary)
+                self.posts.append(userPost)
             }
-            
+            self.collectionView.reloadData()
         } withCancel: { (err) in
-            print("faied to get users")
+            print("Failed to get posts from user" , err)
         }
     }
     
