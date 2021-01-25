@@ -30,28 +30,40 @@ class HomeController: UICollectionViewController,UICollectionViewDelegateFlowLay
     {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let ref = Database.database().reference()
-        ref.child("posts").child(uid).queryOrdered(byChild: "Creation Date").observe(.value) { (snapshot) in
-            self.posts.removeAll()
-            guard let dictionary = snapshot.value as? [String:Any] else {return}
-            dictionary.forEach { (key,val) in
-                guard let postDictionary = val as? [String:Any] else {return}
-                let userPost = Posts(dict: postDictionary)
-                self.posts.insert(userPost, at: 0)
+        
+        //Fetch user
+        ref.child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            guard let userDict = snapshot.value as? [String: Any] else {return}
+            let user = User(dictionary: userDict)
+            
+            //Fetch Posts
+            ref.child("posts").child(uid).queryOrdered(byChild: "Creation Date").observeSingleEvent(of: .value) { (snapshot) in
+                self.posts.removeAll()
+                guard let dictionary = snapshot.value as? [String:Any] else {return}
+                dictionary.forEach { (key,val) in
+                    guard let postDictionary = val as? [String:Any] else {return}
+                    let userPost = Posts(user: user, dict: postDictionary)
+                    self.posts.insert(userPost, at: 0)
+                }
+                self.collectionView.reloadData()
+            } withCancel: { (err) in
+                print("Failed to get posts from user" , err)
             }
-            self.collectionView.reloadData()
-           
+            
         } withCancel: { (err) in
-            print("Failed to get posts from user" , err)
+            print("faied to get users")
         }
+        
+        
     }
-
+    
     // MARK: UICollectionViewDataSource
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return posts.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? HomeCustomCell
         cell?.post = self.posts[indexPath.row]

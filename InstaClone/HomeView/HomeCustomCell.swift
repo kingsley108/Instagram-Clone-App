@@ -15,9 +15,17 @@ class HomeCustomCell: UICollectionViewCell
         didSet
         {
             guard let urlString = post?.imageUrl else {return}
-            imageView.displayImage(urlString:urlString )
+            guard let aviPicUrl = post?.aviUrl else {return}
+            guard let username = post?.username else {return}
+            guard let caption = post?.caption else {return}
+            DispatchQueue.main.async
+            {
+                self.profileImage.displayImage(urlString: aviPicUrl)
+                self.username.text = username
+                self.imageView.displayImage(urlString:urlString )
+                self.setUpCaption(username: username, caption: caption)
+            }
         }
-        
     }
     lazy var imageView: LoadImage =
     {
@@ -32,7 +40,6 @@ class HomeCustomCell: UICollectionViewCell
         let iv = LoadImage()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.backgroundColor = .blue
         iv.layer.cornerRadius = 20
         return iv
     }()
@@ -41,7 +48,6 @@ class HomeCustomCell: UICollectionViewCell
     {
         let lbl = UILabel()
         lbl.font = UIFont.boldSystemFont(ofSize: 14)
-        lbl.text = "Username"
         return lbl
     }()
     
@@ -86,25 +92,28 @@ class HomeCustomCell: UICollectionViewCell
         btn.contentMode = .scaleAspectFill
         return btn
     }()
-    
-     var postsCaption: UITextView =
-    {
-        let txtView = UITextView()
-        let attributedText = NSMutableAttributedString(string: "Username  " , attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14) , NSAttributedString.Key.foregroundColor : UIColor.black])
-        attributedText.append(NSAttributedString(string: "This is the caption",attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
-        attributedText.append(NSAttributedString(string: "\n\n",attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 4)]))
-        attributedText.append(NSAttributedString(string: "2 week ago",attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray]))
-        txtView.attributedText = attributedText
-        return txtView
-    }()
+    lazy var postsCaption: UITextView =
+   {
+       let txtView = UITextView()
+       return txtView
+   }()
    
-    
     override init(frame: CGRect)
     {
         super.init(frame: frame)
         
         positionItems()
         anchorInteractors()
+    }
+    
+    func setUpCaption(username: String, caption: String)
+    {
+        let attributedText = NSMutableAttributedString(string: "\(username)  " , attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14) , NSAttributedString.Key.foregroundColor : UIColor.black])
+        attributedText.append(NSAttributedString(string: "\(caption)",attributes: [NSAttributedString.Key.foregroundColor : UIColor.black, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
+        attributedText.append(NSAttributedString(string: "\n\n",attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 4)]))
+        attributedText.append(NSAttributedString(string: "2 weeks ago",attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray, NSAttributedString.Key.font : UIFont.systemFont(ofSize: 10)]))
+        
+        postsCaption.attributedText = attributedText
     }
     
     func positionItems()
