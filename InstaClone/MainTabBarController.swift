@@ -12,8 +12,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     var index : Int?
     override func viewDidLoad() {
-    
-        
         self.delegate = self
         if Auth.auth().currentUser == nil {
             //show if not logged in
@@ -51,7 +49,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let homeNav = templateController(selectedimage: #imageLiteral(resourceName: "home_selected"), unselectedImage: #imageLiteral(resourceName: "home_unselected"), vc: homeVc)
 
         //Search Navigator
-        let searchNav = templateController(selectedimage: #imageLiteral(resourceName: "search_selected"), unselectedImage: #imageLiteral(resourceName: "search_unselected"))
+        let searchController = SearchController(collectionViewLayout: UICollectionViewFlowLayout())
+        let searchNav = templateController(selectedimage: #imageLiteral(resourceName: "search_selected"), unselectedImage: #imageLiteral(resourceName: "search_unselected"), vc: searchController)
 
         let photoNav = templateController(selectedimage: #imageLiteral(resourceName: "plus_unselected"), unselectedImage: #imageLiteral(resourceName: "plus_unselected"))
 

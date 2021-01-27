@@ -31,6 +31,8 @@
 		1FC962C425B33511000ACF6E /* KeyBoard Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC962C325B33511000ACF6E /* KeyBoard Extension.swift */; };
 		1FDC8C2625BAB0CF00F057C1 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC8C2525BAB0CF00F057C1 /* Posts.swift */; };
 		1FDC8C2E25BAB2BE00F057C1 /* UserPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC8C2D25BAB2BE00F057C1 /* UserPostsCell.swift */; };
+		1FE4010825C138CC005A4487 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE4010725C138CC005A4487 /* SearchController.swift */; };
+		1FE4011025C13FE0005A4487 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE4010F25C13FE0005A4487 /* SearchCell.swift */; };
 		1FE6D55125B805C40031185C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FE6D55025B805C40031185C /* Assets.xcassets */; };
 		1FE6D56625B8207E0031185C /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE6D56525B8207E0031185C /* PhotoController.swift */; };
 		1FE6D63A25B8C8E40031185C /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE6D63925B8C8E10031185C /* PhotoCell.swift */; };
@@ -86,6 +88,8 @@
 		1FC962C325B33511000ACF6E /* KeyBoard Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyBoard Extension.swift"; sourceTree = "<group>"; };
 		1FDC8C2525BAB0CF00F057C1 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		1FDC8C2D25BAB2BE00F057C1 /* UserPostsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostsCell.swift; sourceTree = "<group>"; };
+		1FE4010725C138CC005A4487 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		1FE4010F25C13FE0005A4487 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		1FE6D55025B805C40031185C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../Downloads/InstagramFirebase49_multiline_textview/InstagramFirebase/ios/InstagramFirebase/Assets.xcassets; sourceTree = "<group>"; };
 		1FE6D56525B8207E0031185C /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		1FE6D63925B8C8E10031185C /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 		1F200BF125A458A900BC315E /* InstaClone */ = {
 			isa = PBXGroup;
 			children = (
+				1FE400FB25C13884005A4487 /* UserSearch */,
 				1F16631C25BCA27800F3FB50 /* HomeView */,
 				1FDC8C2425BAB0BE00F057C1 /* Models */,
 				1FE6D55C25B81F6A0031185C /* Photo */,
@@ -237,6 +242,15 @@
 				1FDC8C2525BAB0CF00F057C1 /* Posts.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1FE400FB25C13884005A4487 /* UserSearch */ = {
+			isa = PBXGroup;
+			children = (
+				1FE4010725C138CC005A4487 /* SearchController.swift */,
+				1FE4010F25C13FE0005A4487 /* SearchCell.swift */,
+			);
+			path = UserSearch;
 			sourceTree = "<group>";
 		};
 		1FE6D55C25B81F6A0031185C /* Photo */ = {
@@ -446,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F63382325B2FD7B00C49215 /* LoginViewController.swift in Sources */,
+				1FE4011025C13FE0005A4487 /* SearchCell.swift in Sources */,
 				1F200BF725A458A900BC315E /* RegisterViewController.swift in Sources */,
 				1F6337FB25B18E2500C49215 /* UserProfileHeaderCell.swift in Sources */,
 				1FDC8C2625BAB0CF00F057C1 /* Posts.swift in Sources */,
@@ -460,6 +475,7 @@
 				1F9E96F725BC682C00BB7AB2 /* LoadImage.swift in Sources */,
 				1FE6D64F25B965320031185C /* SharePhotoViewController.swift in Sources */,
 				1F63380025B1903800C49215 /* User.swift in Sources */,
+				1FE4010825C138CC005A4487 /* SearchController.swift in Sources */,
 				1F16631E25BCA2A100F3FB50 /* HomeController.swift in Sources */,
 				1F6337E525B173F200C49215 /* MainTabBarController.swift in Sources */,
 				1F16632325BCA3C200F3FB50 /* HomeCustomCell.swift in Sources */,
